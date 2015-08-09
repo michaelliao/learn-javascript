@@ -6,5 +6,17 @@ function greet(name) {
     console.log(s + ', ' + name + '!');
 }
 
-module.exports = greet;
+function hi(name) {
+    console.log('Hi, ' + name + '!');
+}
+
+function goodbye(name) {
+    console.log('Goodbye, ' + name + '!');
+}
+
+module.exports = {
+    greet: greet,
+    hi: hi,
+    goodbye: goodbye
+};
 
