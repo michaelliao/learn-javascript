@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/jquery.min.js"></script>
+    <script>
+    $(function () {
+        $('#code').click(function () {
+            window.open('https://github.com/michaelliao/learn-javascript/tree/master/samples/node/http');
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div id="header" class="uk-navbar uk-navbar-attached">
+        <div class="uk-container x-container">
+            <div class="uk-navbar uk-navbar-attached">
+                <a href="index.html" class="uk-navbar-brand"><i class="uk-icon-home"></i> Learn Nodejs</a>
+                <ul id="ul-navbar" class="uk-navbar-nav">
+                    <li><a target="_blank" href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">JavaScript教程</a></li>
+                    <li><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Python教程</a></li>
+                    <li><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>                    
+                </ul>
+            </div>
+        </div>
+    </div><!-- // header -->
+
+    <div id="main">
+        <div class="uk-container">
+            <div class="uk-grid">
+                <div class="uk-width-1-1 uk-margin">
+                    <h1>Welcome</h1>
+                    <p><button id="code" class="uk-button uk-button-primary">Show me the code</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="uk-container">
+            <hr>
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                    <p>Copyright&copy;2015-2016</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
