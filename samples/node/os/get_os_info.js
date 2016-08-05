@@ -1,6 +1,6 @@
 'use strict';
 
-var os = require('os');
+const os = require('os');
 
 console.log('CPU: ' + JSON.stringify(os.cpus()));
 
