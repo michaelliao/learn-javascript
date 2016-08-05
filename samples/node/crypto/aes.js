@@ -14,8 +14,8 @@ function aesDecrypt(data, key) {
     return decrypted;
 }
 
-var data = 'Hello, this is a secret message!';
-var key = 'Password!';
+const data = 'Hello, this is a secret message!';
+const key = 'Password!';
 var encrypted = aesEncrypt(data, key);
 var decrypted = aesDecrypt(encrypted, key);
 
