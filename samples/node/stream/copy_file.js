@@ -2,7 +2,7 @@
 
 // read binary data from 'sample.txt'
 
-var fs = require('fs');
+const fs = require('fs');
 
 var rs = fs.createReadStream('sample.txt');
 var ws = fs.createWriteStream('copied.txt');
