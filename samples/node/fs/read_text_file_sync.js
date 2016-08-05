@@ -2,7 +2,7 @@
 
 // read text from 'sample.txt'
 
-var fs = require('fs');
+const fs = require('fs');
 
 console.log('>>> BEGIN >>>')
 

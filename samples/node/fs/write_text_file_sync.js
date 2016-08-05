@@ -2,7 +2,7 @@
 
 // write text to 'output.txt'
 
-var fs = require('fs');
+const fs = require('fs');
 
 console.log('>>> BEGIN >>>')
 

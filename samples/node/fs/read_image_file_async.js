@@ -2,7 +2,7 @@
 
 // read from 'sample.png'
 
-var fs = require('fs');
+const fs = require('fs');
 
 console.log('>>> BEGIN >>>')
 

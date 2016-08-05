@@ -2,7 +2,7 @@
 
 // read binary data from 'sample.txt'
 
-var fs = require('fs');
+const fs = require('fs');
 
 var data = fs.readFileSync('sample.txt')
 console.log(data);

@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require('fs');
+const fs = require('fs');
 
 fs.stat('sample.txt', function (err, stat) {
     if (err) {
