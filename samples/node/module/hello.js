@@ -19,4 +19,3 @@ module.exports = {
     hi: hi,
     goodbye: goodbye
 };
-
