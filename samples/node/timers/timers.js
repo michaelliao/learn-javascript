@@ -9,3 +9,5 @@ setTimeout(function () {
 setInterval(function () {
     console.log('Schedule at ' + new Date().toTimeString());
 }, 3000);
+
+console.log('timer setted.');
