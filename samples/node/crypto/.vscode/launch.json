@@ -60,6 +60,26 @@
             "externalConsole": false,
             "sourceMaps": false,
             "outDir": null
+        },
+        {
+            "name": "Run dh.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/dh.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
         }
     ]
 }
