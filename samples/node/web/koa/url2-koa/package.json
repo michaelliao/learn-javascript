@@ -1,7 +1,7 @@
 {
-    "name": "hello-koa2",
+    "name": "url2-koa",
     "version": "1.0.0",
-    "description": "Hello Koa 2 example with async",
+    "description": "koa 2 example with url route",
     "main": "start.js",
     "scripts": {
         "start": "node start.js"

@@ -1,5 +1,5 @@
 {
-    "name": "hello-koa2",
+    "name": "hello-koa",
     "version": "1.0.0",
     "description": "Hello Koa 2 example with async",
     "main": "start.js",
