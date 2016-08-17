@@ -43,7 +43,7 @@ function addControllers(router) {
 
     for (var f of js_files) {
         console.log(`process controller: ${f}...`);
-        const mapping = require(__dirname + '/controllers/' + f);
+        let mapping = require(__dirname + '/controllers/' + f);
         addMapping(router, mapping);
     }
 }
