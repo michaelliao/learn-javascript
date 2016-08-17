@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Sign in failed!</h1>
+            <div class="alert alert-danger"> <strong>Sorry!</strong> Your email or password does not match! Please try again.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Please sign in</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/signin" method="post">
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <p class="help-block">Use email: admin@example.com</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <p class="help-block">Use password: 123456</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-hd-video"></span> Video training</h3>
+                </div>
+                <div class="panel-body">
+                    <video width="100%" controls="controls">
+                        <source src="https://github.com/michaelliao/learn-javascript/raw/master/video/vscode-nodejs.mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
