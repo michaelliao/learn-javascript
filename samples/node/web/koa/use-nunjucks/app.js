@@ -7,10 +7,11 @@ function createEnv(path, opts) {
         watch = opts.watch || false,
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
-            new nunjucks.FileSystemLoader('views'), {
-                autoescape: autoescape,
+            new nunjucks.FileSystemLoader('views', {
                 noCache: noCache,
                 watch: watch,
+            }), {
+                autoescape: autoescape,
                 throwOnUndefined: throwOnUndefined
             });
     if (opts.filters) {
