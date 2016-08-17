@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+
+{% block header %}<h1>{{ header }}</h1>{% endblock %}
+
+{% block body %}<p>{{ body }}</p>{% endblock %}

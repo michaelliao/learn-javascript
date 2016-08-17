@@ -1,0 +1,5 @@
+<html><body>
+{% block header %} <h3>Unnamed</h3> {% endblock %}
+{% block body %} <div>No body</div> {% endblock %}
+{% block footer %} <div>copyright</div> {% endblock %}
+</body>
