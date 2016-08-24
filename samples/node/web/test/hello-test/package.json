@@ -1,0 +1,23 @@
+{
+  "name": "mocha-test",
+  "version": "1.0.0",
+  "description": "Mocha simple test",
+  "main": "hello.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "mocha",
+    "test"
+  ],
+  "author": "Michael Liao",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelliao/learn-javascript.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "3.0.2"
+  }
+}
