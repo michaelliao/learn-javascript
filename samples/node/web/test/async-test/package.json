@@ -1,0 +1,30 @@
+{
+  "name": "mocha-async-test",
+  "version": "1.0.0",
+  "description": "Mocha async test",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --require hook"
+  },
+  "keywords": [
+    "mocha",
+    "test",
+    "async"
+  ],
+  "author": "Michael Liao",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelliao/learn-javascript.git"
+  },
+  "dependencies": {
+    "babel-core": "6.13.2",
+    "babel-polyfill": "6.13.0",
+    "babel-preset-es2015-node6": "0.3.0",
+    "babel-preset-stage-3": "6.5.0",
+    "mz": "2.4.0"
+  },
+  "devDependencies": {
+    "mocha": "3.0.2"
+  }
+}
