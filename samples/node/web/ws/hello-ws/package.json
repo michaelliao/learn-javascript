@@ -1,0 +1,22 @@
+{
+    "name": "hello-ws",
+    "version": "1.0.0",
+    "description": "Hello WebSocket example",
+    "main": "start.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "keywords": [
+        "ws",
+        "websocket"
+    ],
+    "author": "Michael Liao",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/michaelliao/learn-javascript.git"
+    },
+    "dependencies": {
+        "ws": "1.1.1"
+    }
+}
