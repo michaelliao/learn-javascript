@@ -1,0 +1,174 @@
+{% extends "base.html" %} {% block main %}
+
+<script>
+
+$(function () {
+    var vm = new Vue({
+        el: '#product-list',
+        data: {
+            products: []
+        },
+        methods: {
+            deleteProduct: function (id) {
+                var that = this;
+                // AJAX提交JSON:
+                $.ajax({
+                    type: 'delete',
+                    dataType: 'json',
+                    url: '/api/products/' + id
+                }).done(function (r) {
+                    console.log(r);
+                    var i;
+                    for (i=0; i<that.products.length; i++) {
+                        if (that.products[i].id === r.id) {
+                            that.products.splice(i, 1);
+                            return;
+                        }
+                    }
+                }).fail(function (jqXHR, textStatus) {
+                    // Not 200:
+                    alert('Error: ' + jqXHR.status);
+                });
+            }
+        }
+    });
+
+    $.getJSON('/api/products').done(function (data) {
+        vm.products = data.products;
+    }).fail(function (jqXHR, textStatus) {
+        alert('Error: ' + jqXHR.status);
+    });
+
+    $('#product-form').submit(function (e) {
+        e.preventDefault();
+        var
+            product = {
+                name: $(this).find('input[name=name]').val(),
+                manufacturer: $(this).find('input[name=manufacturer]').val(),
+                price: parseFloat($(this).find('input[name=price]').val())
+            };
+        // AJAX提交JSON:
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/api/products',
+            data: JSON.stringify(product)
+        }).done(function (r) {
+            vm.products.push(r);
+        }).fail(function (jqXHR, textStatus) {
+            // Not 200:
+            alert('Error: ' + jqXHR.status);
+        });
+    });
+});
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span> Products</h3>
+                </div>
+                <div class="panel-body">
+                    <table id="product-list" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width:50px"></th>
+                                <th>Product</th>
+                                <th style="width:150px">Price</th>
+                                <th style="width:50px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="p in products">
+                                <td>
+                                    <img class="media-object" style="width:40px; height:40px;" src="/static/images/icon.png">
+                                </td>
+                                <td>
+                                    <h4 class="media-heading" v-text="p.name"></h4>
+                                    <p><span v-text="p.manufacturer"></span> <span><a v-on:click="deleteProduct(p.id)" href="#0">delete</a></span></p>
+                                </td>
+                                <td>
+                                    <p style="font-size:2em">¥ <span v-text="p.price"></span></p>
+                                </td>
+                                <td><a target="_blank" v-bind:href="'http://search.jd.com/Search?enc=utf-8&keyword=' + encodeURIComponent(p.name)">Buy</a>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Create New Product</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="product-form">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Product name" value="">
+                            <p class="help-block">Product name</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Manufacturer</label>
+                            <input type="text" name="manufacturer" class="form-control" placeholder="Manufacturer name" value="">
+                            <p class="help-block">Manufacturer name</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="number" name="price" class="form-control" placeholder="Product price" value="">
+                            <p class="help-block">Product price</p>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Get more courses...</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">JavaScript</h3>
+                </div>
+                <div class="panel-body">
+                    <p>full-stack JavaScript course</p>
+                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">Read more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Python</h3>
+                </div>
+                <div class="panel-body">
+                    <p>the latest Python course</p>
+                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Read more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">git</h3>
+                </div>
+                <div class="panel-body">
+                    <p>A course about git version control</p>
+                    <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Read more</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
