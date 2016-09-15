@@ -22,14 +22,5 @@ module.exports = {
         } else {
             throw new APIError('product:not_found', 'product not found by id.');
         }
-    },
-
-    'GET /api/products/:id': async (ctx, next) => {
-        let p = findProductById(ctx.params.id);
-        if (p) {
-            ctx.rest(p);
-        } else {
-            throw new APIError('product:not_found', 'product not found by id.');
-        }
     }
 };
