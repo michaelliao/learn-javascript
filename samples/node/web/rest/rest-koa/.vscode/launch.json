@@ -12,7 +12,7 @@
             "preLaunchTask": null,
             "runtimeExecutable": null,
             "runtimeArgs": [
-                "--nolazy"
+                "--nolazy", "--use_strict"
             ],
             "env": {
                 "NODE_ENV": "development"

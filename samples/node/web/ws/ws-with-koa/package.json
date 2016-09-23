@@ -4,7 +4,7 @@
     "description": "websocket with koa integration",
     "main": "start.js",
     "scripts": {
-        "start": "node start.js"
+        "start": "node --use_strict start.js"
     },
     "keywords": [
         "websocket",

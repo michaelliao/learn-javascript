@@ -4,7 +4,7 @@
     "description": "Sequelize best practice example with async",
     "main": "start.js",
     "scripts": {
-        "start": "node start.js"
+        "start": "node --use_strict start.js"
     },
     "keywords": [
         "sequelize",
