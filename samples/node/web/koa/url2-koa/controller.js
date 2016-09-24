@@ -27,15 +27,15 @@ function addMapping(router, mapping) {
     }
 }
 
-function addControllers(router) {
-    var files = fs.readdirSync(__dirname + '/controllers');
+function addControllers(router, dir) {
+    var files = fs.readdirSync(__dirname + '/' + dir);
     var js_files = files.filter((f) => {
         return f.endsWith('.js');
     }, files);
 
     for (var f of js_files) {
         console.log(`process controller: ${f}...`);
-        let mapping = require(__dirname + '/controllers/' + f);
+        let mapping = require(__dirname + '/' + dir + '/' + f);
         addMapping(router, mapping);
     }
 }
@@ -44,6 +44,6 @@ module.exports = function (dir) {
     let
         controllers_dir = dir || 'controllers',
         router = require('koa-router')();
-    addControllers(router);
+    addControllers(router, controllers_dir);
     return router.routes();
 };
