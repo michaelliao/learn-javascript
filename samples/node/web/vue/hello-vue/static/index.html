@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>Vue</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script>
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            name: 'Robot',
+            age: 15
+        }
+    });
+    window.vm = vm;
+});
+
+function executeJs() {
+    try {
+        var code = $('#code').val();
+        var fn = new Function('var vm = window.vm;\n' + code);
+        fn();
+    } catch (e) {}
+    return false;
+}
+
+
+
+    </script>
+</head>
+
+<body>
+    <header class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Learn JavaScript</a>
+            </div>
+            <nav class="collapse navbar-collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li><a target="_blank" href="http://www.liaoxuefeng.com/">Get Courses</a></li>
+                    <li><a target="_blank" href="https://github.com/michaelliao/learn-javascript">Source Code</a></li>
+                    <li><a target="_blank" href="http://getbootstrap.com/">Resource</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="important" style="color:#cdbfe3; background-color:#6f5499; padding:30px 0; margin:-20px 0 20px 0;">
+        <div class="container">
+            <h1 style="color:#fff; font-size:60px">Getting started</h1>
+            <p style="font-size:24px; line-height:48px">Learn JavaScript, Node.js, npm, koa2, Vue, babel, etc. at liaoxuefeng.com.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="vm">
+                            <p>Hello, {{ name }}!</p>
+                            <p>You are {{ age }} years old!</p>
+                        </div>
+                        <hr>
+                        <h3>Try change the name or age</h3>
+                        <form action="#" onsubmit="return executeJs()">
+                            <div class="form-group">
+                                <textarea id="code" class="form-control" style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; resize:none;" rows="5">vm.name = 'Bob';</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Execute</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-eye-open"></span> Code</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>HTML:</p>
+                        <pre>&lt;div id="vm"&gt;
+    &lt;p&gt;Hello, {{ name }}!&lt;/p&gt;
+    &lt;p&gt;You are {{ age }} years old!&lt;/p&gt;
+&lt;/div&gt;</pre>
+                        <p>JavaScript:</p>
+                        <pre>var vm = new Vue({
+    el: '#vm',
+    data: {
+        name: 'Robot',
+        age: 15
+    }
+});</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Get more courses...</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">JavaScript</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>full-stack JavaScript course</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Python</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>the latest Python course</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">git</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>A course about git version control</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color:#ddd; padding: 20px 0;">
+        <div class="container">
+            <p>
+                <a target="_blank" href="http://www.liaoxuefeng.com">Website</a> -
+                <a target="_blank" href="https://github.com/michaelliao/learn-javascript">GitHub</a> -
+                <a target="_blank" href="http://weibo.com/liaoxuefeng">Weibo</a>
+            </p>
+            <p>This JavaScript course is created by <a target="_blank" href="http://weibo.com/liaoxuefeng">@廖雪峰</a>.</p>
+            <p>Code licensed <a target="_blank" href="https://github.com/michaelliao/learn-javascript/blob/master/LICENSE">Apache</a>.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
