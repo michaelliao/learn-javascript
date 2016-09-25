@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>Vue</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+    <script>
+
+function showError(resp) {
+    resp.json().then(function (result) {
+        console.log('Error: ' + result.message);
+    });
+}
+
+$(function () {
+    var vm = new Vue({
+        el: '#vm',
+        http: {
+            timeout: 5000
+        },
+        data: {
+            title: 'TODO List',
+            todos: [],
+            loading: false
+        },
+        created: function () {
+            this.init();
+        },
+        methods: {
+            init: function () {
+                var that = this;
+                that.loading = true;
+                that.$resource('/api/todos').get().then(function (resp) {
+                    that.loading = false;
+                    resp.json().then(function (result) {
+                        that.todos = result.todos;
+                    });
+                }, function (resp) {
+                    that.loading = false;
+                    showError(resp);
+                });
+            },
+            create: function (todo) {
+                var that = this;
+                that.$resource('/api/todos').save(todo).then(function (resp) {
+                    resp.json().then(function (result) {
+                        that.todos.push(result);
+                    });
+                }, showError);
+            },
+            update: function (todo, prop, e) {
+                var that = this;
+                var t = {
+                    name: todo.name,
+                    description: todo.description
+                };
+                t[prop] = e.target.innerText;
+                if (t[prop] === todo[prop]) {
+                    return;
+                }
+                that.$resource('/api/todos/' + todo.id).update(t).then(function (resp) {
+                    resp.json().then(function (r) {
+                        todo.name = r.name;
+                        todo.description = r.description;
+                    });
+                }, function (resp) {
+                    e.target.innerText = todo[prop];
+                    showError(resp);
+                });
+            },
+            remove: function (todo) {
+                var that = this;
+                that.$resource('/api/todos/' + todo.id).delete().then(function (resp) {
+                    var i, index = -1;
+                    for (i=0; i<that.todos.length; i++) {
+                        if (that.todos[i].id === todo.id) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index >= 0) {
+                        that.todos.splice(index, 1);
+                    }
+                }, showError);
+            }
+        }
+    });
+    window.vm = vm;
+
+    var vmAdd = new Vue({
+        el: '#vmAdd',
+        data: {
+            name: '',
+            description: ''
+        },
+        methods: {
+            submit: function () {
+                vm.create(this.$data);
+                this.name = '';
+                this.description = '';
+            }
+        }
+    });
+});
+
+    </script>
+</head>
+
+<body>
+    <header class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Learn JavaScript</a>
+            </div>
+            <nav class="collapse navbar-collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li><a target="_blank" href="http://www.liaoxuefeng.com/">Get Courses</a></li>
+                    <li><a target="_blank" href="https://github.com/michaelliao/learn-javascript">Source Code</a></li>
+                    <li><a target="_blank" href="http://getbootstrap.com/">Resource</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="important" style="color:#cdbfe3; background-color:#6f5499; padding:30px 0; margin:-20px 0 20px 0;">
+        <div class="container">
+            <h1 style="color:#fff; font-size:60px">Getting started</h1>
+            <p style="font-size:24px; line-height:48px">Learn JavaScript, Node.js, npm, koa2, Vue, babel, etc. at liaoxuefeng.com.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="vm">
+                            <h3>{{ title }}</h3>
+                            <p v-if="loading">Loading...</p>
+                            <ol>
+                                <li v-for="t in todos">
+                                    <dl>
+                                        <dt contenteditable="true" v-on:blur="update(t, 'name', $event)">{{ t.name }}</dt>
+                                        <dd contenteditable="true" v-on:blur="update(t, 'description', $event)">{{ t.description }}</dd>
+                                        <dd><a href="#0" v-on:click="remove(t)">Delete</a></dd>
+                                    </dl>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Add New Todo</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form id="vmAdd" action="#0" v-on:submit.prevent="submit">
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <input type="text" v-model="name" class="form-control" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <input type="text" v-model="description" class="form-control" placeholder="Enter description">
+                            </div>
+                            <button type="submit" class="btn btn-default">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Get more courses...</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">JavaScript</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>full-stack JavaScript course</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Python</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>the latest Python course</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">git</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>A course about git version control</p>
+                        <p><a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color:#ddd; padding: 20px 0;">
+        <div class="container">
+            <p>
+                <a target="_blank" href="http://www.liaoxuefeng.com">Website</a> -
+                <a target="_blank" href="https://github.com/michaelliao/learn-javascript">GitHub</a> -
+                <a target="_blank" href="http://weibo.com/liaoxuefeng">Weibo</a>
+            </p>
+            <p>This JavaScript course is created by <a target="_blank" href="http://weibo.com/liaoxuefeng">@廖雪峰</a>.</p>
+            <p>Code licensed <a target="_blank" href="https://github.com/michaelliao/learn-javascript/blob/master/LICENSE">Apache</a>.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
