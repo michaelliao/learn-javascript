@@ -1,6 +1,10 @@
 const Koa = require('koa');
 
+const bodyParser = require('koa-bodyparser');
+
 const controller = require('./controller');
+
+const rest = require('./rest');
 
 const app = new Koa();
 
@@ -21,10 +25,19 @@ app.use(async (ctx, next) => {
 let staticFiles = require('./static-files');
 app.use(staticFiles('/static/', __dirname + '/static'));
 
-// redirect to /static/index.html:
 app.use(async (ctx, next) => {
-    ctx.response.redirect('/static/index.html');
+    if (ctx.request.path === '/') {
+        ctx.response.redirect('/static/index.html');
+    } else {
+        await next();
+    }
 });
+
+// parse request body:
+app.use(bodyParser());
+
+// bind .rest() for ctx:
+app.use(rest.restify());
 
 // add controllers:
 app.use(controller());

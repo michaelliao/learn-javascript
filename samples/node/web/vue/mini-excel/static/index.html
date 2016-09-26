@@ -10,6 +10,7 @@
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
     <script src="/static/js/excel.js"></script>
     <style>
 
@@ -45,6 +46,7 @@
     </style>
     <script>
 
+var ID = 'S-001';
 var COLUMNS = 10;
 
 function createHeader() {
@@ -102,6 +104,27 @@ $(function () {
             selectedColIndex: 0
         },
         methods: {
+            open: function () {
+                var that = this;
+                that.$resource('/api/sheets/' + ID).get().then(function (resp) {
+                    resp.json().then(function (result) {
+                        that.title = result.title;
+                        that.rows = result.rows;
+                    });
+                }, function (resp) {
+                    alert('Failed to load.');
+                });
+            },
+            save: function () {
+                this.$resource('/api/sheets/' + ID).update({
+                    title: this.title,
+                    rows: this.rows
+                }).then(function (resp) {
+                    console.log('saved ok.');
+                }, function (resp) {
+                    alert('failed to save.');
+                });
+            },
             focus: function (cell) {
                 this.selectedRowIndex = cell.row;
                 this.selectedColIndex = cell.col;
@@ -131,6 +154,14 @@ $(function () {
             cell.align = align;
         }
     };
+
+    $('#cmd-open').click(function () {
+        vm.open();
+    });
+
+    $('#cmd-save').click(function () {
+        vm.save();
+    });
 
     $('#cmd-left').click(function () {
         setAlign('left');
@@ -171,6 +202,7 @@ $(function () {
             </div>
             <nav id="toolbar" class="collapse navbar-collapse">
                 <div class="btn-group">
+                    <button id="cmd-open" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-folder-open"></i> Open</button>
                     <button id="cmd-save" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
                     <button id="cmd-download" type="button" class="btn btn-default navbar-btn"><i class="glyphicon glyphicon-save"></i> Download</button>
                 </div>
@@ -198,7 +230,7 @@ $(function () {
         </table>
     </div>
 
-    <footer class="navbar navbar-fixed-bottom" style="height:35px; min-height:35px; overflow:hidden;">
+    <footer class="navbar navbar-fixed-bottom" style="background-color:#e7e7e7; height:35px; min-height:35px; overflow:hidden;">
         <div class="container-fluid">
             <nav class="collapse navbar-collapse">
                 <p class="text-right" style="padding-top:5px">
