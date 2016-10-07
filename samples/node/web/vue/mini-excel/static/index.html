@@ -131,9 +131,9 @@ $(function () {
             },
             change: function (e) {
                 var
-                    rowIndex = vm.selectedRowIndex,
-                    colIndex = vm.selectedColIndex,
-                    text, that;
+                    rowIndex = this.selectedRowIndex,
+                    colIndex = this.selectedColIndex,
+                    text;
                 if (rowIndex > 0 && colIndex > 0) {
                     text = e.target.innerText;
                     this.rows[rowIndex - 1][colIndex].text = text;
@@ -219,12 +219,12 @@ $(function () {
         <table id="sheet" class="table table-bordered">
             <thead>
                 <tr>
-                    <th v-for="cell in header" v-on:click="focus(cell)" >{{ cell.text }}</th>
+                    <th v-for="cell in header" v-on:click="focus(cell)" v-text="cell.text"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="tr in rows">
-                    <td v-for="cell in tr" v-on:blur="change" v-on:click="focus(cell)" v-bind:contenteditable="cell.contentEditable" v-bind:style="{ textAlign: cell.align }" v-text="cell.text"></td>
+                    <td v-for="cell in tr" v-on:click="focus(cell)" v-on:blur="change" v-bind:contenteditable="cell.contentEditable" v-bind:style="{ textAlign: cell.align }" v-text="cell.text"></td>
                 </tr>
             </tbody>
         </table>
