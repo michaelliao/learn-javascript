@@ -24,7 +24,7 @@ app.use(staticFiles('/static/', __dirname + '/static'));
 app.use(bodyParser());
 
 // add nunjucks as view:
-app.use(templating('view', {
+app.use(templating('views', {
     noCache: true,
     watch: true
 }));
