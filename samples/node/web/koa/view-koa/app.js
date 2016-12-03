@@ -1,3 +1,4 @@
+'use strict';
 const Koa = require('koa');
 
 const bodyParser = require('koa-bodyparser');
