@@ -2,9 +2,9 @@
     "name": "rest-koa",
     "version": "1.0.0",
     "description": "koa 2 example with rest api",
-    "main": "start.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node --use_strict start.js"
+        "start": "node --use_strict app.js"
     },
     "keywords": [
         "koa",
@@ -18,10 +18,6 @@
         "url": "https://github.com/michaelliao/learn-javascript.git"
     },
     "dependencies": {
-        "babel-core": "6.13.2",
-        "babel-polyfill": "6.13.0",
-        "babel-preset-es2015-node6": "0.3.0",
-        "babel-preset-stage-3": "6.5.0",
         "koa": "2.0.0",
         "koa-bodyparser": "3.2.0",
         "koa-router": "7.0.0",

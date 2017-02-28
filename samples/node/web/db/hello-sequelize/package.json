@@ -2,9 +2,9 @@
     "name": "hello-sequelize",
     "version": "1.0.0",
     "description": "Hello Sequelize example with async",
-    "main": "start.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node --use_strict start.js"
+        "start": "node --use_strict app.js"
     },
     "keywords": [
         "sequelize",
@@ -17,10 +17,6 @@
         "url": "https://github.com/michaelliao/learn-javascript.git"
     },
     "dependencies": {
-        "babel-core": "6.13.2",
-        "babel-polyfill": "6.13.0",
-        "babel-preset-es2015-node6": "0.3.0",
-        "babel-preset-stage-3": "6.5.0",
         "sequelize": "3.24.1",
         "mysql": "2.11.1"
     }

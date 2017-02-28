@@ -9,7 +9,7 @@
             "stopOnEntry": false,
             "args": [
                 "--require",
-                "hook"
+                "hello"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
