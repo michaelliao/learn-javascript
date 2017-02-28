@@ -4,7 +4,7 @@
   "description": "Mocha async test",
   "main": "hello.js",
   "scripts": {
-    "test": "mocha --require hello"
+    "test": "mocha"
   },
   "keywords": [
     "mocha",

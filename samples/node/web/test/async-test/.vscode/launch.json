@@ -7,10 +7,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/mocha",
             "stopOnEntry": false,
-            "args": [
-                "--require",
-                "hello"
-            ],
+            "args": [],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
             "runtimeExecutable": null,
