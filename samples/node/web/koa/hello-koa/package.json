@@ -2,9 +2,9 @@
     "name": "hello-koa",
     "version": "1.0.0",
     "description": "Hello Koa 2 example with async",
-    "main": "start.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node --use_strict start.js"
+        "start": "node --use_strict app.js"
     },
     "keywords": [
         "koa",
