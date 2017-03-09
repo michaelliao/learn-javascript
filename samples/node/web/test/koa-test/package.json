@@ -1,0 +1,29 @@
+{
+    "name": "koa-test",
+    "version": "1.0.0",
+    "description": "Test Koa 2 app",
+    "main": "start.js",
+    "scripts": {
+        "start": "node --use_strict start.js",
+        "test": "mocha"
+    },
+    "keywords": [
+        "koa",
+        "async",
+        "mocha",
+        "test"
+    ],
+    "author": "Michael Liao",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/michaelliao/learn-javascript.git"
+    },
+    "dependencies": {
+        "koa": "2.0.0"
+    },
+    "devDependencies": {
+        "mocha": "3.0.2",
+        "supertest": "3.0.0"
+    }
+}
