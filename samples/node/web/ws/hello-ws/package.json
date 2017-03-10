@@ -2,7 +2,7 @@
     "name": "hello-ws",
     "version": "1.0.0",
     "description": "Hello WebSocket example",
-    "main": "start.js",
+    "main": "app.js",
     "scripts": {
         "start": "node app.js"
     },
