@@ -78,22 +78,38 @@ function defineModel(name, attributes) {
         tableName: name,
         timestamps: false,
         hooks: {
-            beforeValidate: function (obj) {
-                let now = Date.now();
-                if (obj.isNewRecord) {
-                    console.log('will create entity...' + obj);
-                    if (!obj.id) {
-                        obj.id = generateId();
-                    }
-                    obj.createdAt = now;
-                    obj.updatedAt = now;
-                    obj.version = 0;
-                } else {
-                    console.log('will update entity...');
-                    obj.updatedAt = now;
-                    obj.version++;
-                }
-            }
+            // beforeValidate: function (obj) {
+            //     if (obj.isNewRecord) {
+            //         console.log('will create entity...' + obj);
+            //         if (!obj.id) {
+            //             obj.id = generateId();
+            //         }
+            //         obj.createdAt = now;
+            //         obj.updatedAt = now;
+            //         obj.version = 0;
+            //     } else {
+            //         console.log('will update entity...');
+            //         obj.updatedAt = now;
+            //         obj.version++;
+            //     }
+            // },
+          // sequelize v4
+          beforeCreate: instance => {
+            let now = Date.now();
+            console.log('will create entity...' + instance);
+            !instance.id && (instance.id = generateId());
+
+            instance.createdAt = now;
+            instance.updatedAt = now;
+            instance.version = 0;
+          },
+          // update操作，需要在option加上 individualHooks: true，让每个instance都update
+          beforeUpdate: instance => {
+            let now = Date.now();
+            console.log('will update entity...');
+            instance.updatedAt = now;
+            instance.version++;
+          }
         }
     });
 }
