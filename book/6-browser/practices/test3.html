@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML结构 -->
+<div id="test-div">
+    <p id="test-js">javascript</p>
+    <p>Java</p>
+</div>
+<script>
+
+    // var p = document.getElementById('test-div');
+    // // 设置文本:
+    // p.innerText = "ABC";
+
+    var p = document.getElementById('test-div').getElementsByTagName("p").item(0);
+    p.innerText = "ABC";
+    // 设置CSS:
+    // p.style.color = '#ff0000';
+    p.style.color = 'red';
+    p.style.fontSize = '20px';
+    p.style.fontWeight="bold"
+    p.style.paddingTop = '2em';
+
+    // 测试:
+    if (js && js.parentNode && js.parentNode.id === 'test-div' && js.id === 'test-js') {
+        if (js.innerText === 'JavaScript') {
+            if (js.style && js.style.fontWeight === 'bold' && (js.style.color === 'red' || js.style.color === '#ff0000'
+                    || js.style.color === '#f00' || js.style.color === 'rgb(255, 0, 0)')) {
+                console.log('测试通过!');
+            } else {
+                console.log('CSS样式测试失败!');
+            }
+        } else {
+            console.log('文本测试失败!');
+        }
+    } else {
+        console.log('节点测试失败!');
+    }
+</script>
+
+</body>
+</html>

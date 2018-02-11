@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test-div">
+    <div class="c-red">
+        <p id="test-p">JavaScript</p>
+        <p>Java</p>
+    </div>
+    <div class="c-red c-green">
+        <p>Python</p>
+        <p>Ruby</p>
+        <p>Swift</p>
+    </div>
+    <div class="c-green">
+        <p>Scheme</p>
+        <p>Haskell</p>
+    </div>
+</div>
+<script >
+    // 选择<p>JavaScript</p>:
+    var js = document.getElementById("test-div").getElementsByClassName('c-red').item(0).getElementsByTagName("p").item(0);
+    console.log(js)
+    // 选择<p>Python</p>,<p>Ruby</p>,<p>Swift</p>:
+    var  js1= document.getElementById("test-div").getElementsByClassName("c-red c-green").item(0);
+    console.log(js1)
+    // 选择<p>Haskell</p>:
+    var  js2= document.getElementById("test-div").getElementsByClassName("c-green").item(1).getElementsByTagName("p").item(1);
+
+    console.log(js22)
+
+</script>
+
+</body>
+</html>

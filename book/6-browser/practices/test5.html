@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="test-list">
+    <li>JavaScript</li>
+    <li>Swift</li>
+    <li>HTML</li>
+    <li>ANSI C</li>
+    <li>CSS</li>
+    <li>DirectX</li>
+</ul>
+<script>
+
+    'use strict';
+
+    // TODO
+
+    var list = document.getElementById('test-list')
+    var slist = list.children;
+    console.log(slist);
+    slist = Array.prototype.slice.call(slist).filter(function(a) {
+        return a.innerHTML !=='JavaScript'&&  a.innerHTML!== 'HTML'&& a.innerHTML!=='CSS';
+    });
+    slist.forEach(function(el){
+        list.removeChild(el);
+    });
+
+    // 测试:
+    ;(function () {
+        var
+            arr, i,
+            t = document.getElementById('test-list');
+        if (t && t.children && t.children.length === 3) {
+            arr = [];
+            for (i = 0; i < t.children.length; i ++) {
+                arr.push(t.children[i].innerText);
+            }
+            if (arr.toString() === ['JavaScript', 'HTML', 'CSS'].toString()) {
+                console.log('测试通过!');
+            }
+            else {
+                console.log('测试失败: ' + arr.toString());
+            }
+        }
+        else {
+            console.log('测试失败!');
+        }
+    })();
+
+
+</script>
+</body>
+</html>

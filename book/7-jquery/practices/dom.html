@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+<!-- HTML结构 -->
+
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>
+
+<script>
+    $('#test-ul li[name=book]').text(); // 'Java & JavaScript'
+    $('#test-ul li[name=book]').html(); // 'Java &amp; JavaScript'
+
+
+    var j1 = $('#test-ul li.js');
+    var j2 = $('#test-ul li[name=book]');
+
+    j1.html('<span style="color: red">JavaScript</span>');
+    j2.text('JavaScript & ECMAScript');
+
+
+    $('#test-ul li').text('JS'); // 是不是两个节点都变成了JS？
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+<!-- HTML结构 -->
+<ul class="lang">
+    <li class="js dy">JavaScript</li>
+    <li class="dy">Python</li>
+    <li id="swift">Swift</li>
+    <li class="dy">Scheme</li>
+    <li name="haskell">Haskell</li>
+</ul>
+<script>
+
+
+    var ul = $('ul.lang'); // 获得<ul>
+    var dy = ul.find('.dy'); // 获得JavaScript, Python, Scheme
+    var swf = ul.find('#swift'); // 获得Swift
+    var hsk = ul.find('[name=haskell]'); // 获得Haskell
+
+    var swf = $('#swift'); // 获得Swift
+    var parent = swf.parent(); // 获得Swift的上层节点<ul>
+    var a = swf.parent('.red'); // 获得Swift的上层节点<ul>，同时传入过滤条件。如果ul不符合条件，返回空jQuery对象
+
+    var swift = $('#swift');
+
+    swift.next(); // Scheme
+    swift.next('[name=haskell]'); // 空的jQuery对象，因为Swift的下一个元素Scheme不符合条件[name=haskell]
+
+    swift.prev(); // Python
+    swift.prev('.dy'); // Python，因为Python同时符合过滤器条件.dy
+
+    var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+    var a = langs.filter('.dy'); // 拿到JavaScript, Python, Scheme
+
+    var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+    langs.filter(function () {
+        return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
+    }); // 拿到Swift, Scheme
+
+    var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+    var arr = langs.map(function () {
+        return this.innerHTML;
+    }).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
+
+    var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+    var js = langs.first(); // JavaScript，相当于$('ul.lang li:first-child')
+    var haskell = langs.last(); // Haskell, 相当于$('ul.lang li:last-child')
+    var sub = langs.slice(2, 4); // Swift, Scheme, 参数和数组的slice()方法一致
+
+
+
+</script>
+</body>
+</html>

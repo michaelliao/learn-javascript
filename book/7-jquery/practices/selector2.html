@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+<!-- HTML结构 -->
+<div class="testing">
+    <ul class="lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+</div>
+<script>
+    // $('ancestor descendant')
+    //层级选择器
+    $('ul.lang li.lang-javascript');// [<li class="lang-javascript">JavaScript</li>]
+
+//子选择器
+    $('ul.lang>li.lang-javascript');// 可以选出[<li class="lang-javascript">JavaScript</li>]
+
+    //过滤器（Filter）
+
+    $('ul.lang li:first-child'); // 仅选出JavaScript
+    $('ul.lang li:last-child'); // 仅选出Lua
+</script>
+</body>
+</html>

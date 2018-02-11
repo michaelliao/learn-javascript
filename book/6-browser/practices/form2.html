@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML -->
+<form id="test-form" onsubmit="return checkForm()">
+    <input type="text" name="test">
+    <button type="submit">提交</button>
+</form>
+
+<script>
+    function checkForm() {
+        var form = document.getElementById('test-form');
+        // 可以在此修改form的input...
+        // 继续下一步: 注意要return true来告诉浏览器继续提交，如果return false，浏览器将不会继续提交form，
+        // 这种情况通常对应用户输入有误，提示用户错误信息后终止提交form。
+        return true;
+    }
+</script>
+
+</body>
+</html>

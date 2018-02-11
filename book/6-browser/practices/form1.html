@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML -->
+<form id="test-form">
+    <input type="text" name="test">
+    <button type="button" onclick="doSubmitForm()">提交</button>
+</form>
+
+<script>
+    function doSubmitForm() {
+        var form = document.getElementById('test-form');
+        // 可以在此修改form的input...
+        // 提交form:
+        form.submit();
+    }
+</script>
+</body>
+</html>

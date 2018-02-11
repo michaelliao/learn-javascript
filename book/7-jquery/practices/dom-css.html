@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+<!-- HTML结构 -->
+<ul id="test-css">
+    <li class="lang dy"><span>JavaScript</span></li>
+    <li class="lang"><span>Java</span></li>
+    <li class="lang dy"><span>Python</span></li>
+    <li class="lang"><span>Swift</span></li>
+    <li class="lang dy"><span>Scheme</span></li>
+</ul>
+
+<script>
+
+    $('#test-css li.dy>span').css('background-color', '#ffd351').css('color', 'red');
+
+
+</script>
+</body>
+</html>

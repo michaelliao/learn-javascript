@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+<!-- HTML结构 -->
+<div class="test-selector">
+    <ul class="test-lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+    <ol class="test-lang">
+        <li class="lang-swift">Swift</li>
+        <li class="lang-java">Java</li>
+        <li class="lang-c">C</li>
+    </ol>
+</div>
+<script>
+    // 分别选择所有语言，所有动态语言，所有静态语言，JavaScript，Lua，C等:
+    selected = $('div.test-selector li')
+    //动态语言
+    selected = $('div.test-selector ul')
+    selected = $('ul.test-lang li')
+    //静态语言
+    selected = $('div.test-selector ol')
+    selected = $('div.test-selector>ol')
+    //javascript
+    selected = $('ul.test-lang>li.lang-javascript')
+    selected = $('.lang-javascript')
+    // 高亮结果:
+    if (!(selected instanceof jQuery)) {
+         console.log('不是有效的jQuery对象!');
+    }
+    $('#test-jquery').find('*').css('background-color', '');
+    selected.css('background-color', '#ffd351');
+
+
+
+</script>
+</body>
+</html>
