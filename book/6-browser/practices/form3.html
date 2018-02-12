@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML -->
+<form id="login-form" method="post" onsubmit="return checkForm()">
+    用户名:<input type="text" id="username" name="username">
+    密码:<input type="password" id="password" name="password">
+    <button type="submit">提交</button>
+</form>
+
+<script>
+    function checkForm() {
+        var pwd = document.getElementById('password');
+        // 把用户输入的明文变为MD5:
+        pwd.value = toMD5(pwd.value);
+        // 继续下一步:
+        return true;
+    }
+</script>
+
+</body>
+</html>

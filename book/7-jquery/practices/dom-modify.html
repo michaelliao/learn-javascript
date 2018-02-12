@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+<div id="test-div">
+    <ul>
+        <li><span>JavaScript</span></li>
+        <li><span>Python</span></li>
+        <li><span>Swift</span></li>
+    </ul>
+</div>
+
+<script>
+    var ul = $('#test-div>ul');
+    ul.append('<li><span>Haskell</span></li>');
+
+    // 创建DOM对象:
+    var ps = document.createElement('li');
+    ps.innerHTML = '<span>Pascal</span>';
+    // 添加DOM对象:
+    ul.append(ps);
+
+    // 添加jQuery对象:
+    ul.append($('#scheme'));
+
+    // 添加函数对象:
+    ul.append(function (index, html) {
+        return '<li><span>Language - ' + index + '</span></li>';
+    });
+
+    var js = $('#test-div>ul>li:first-child');
+    js.after('<li><span>Lua</span></li>');
+
+
+    // var li = $('#test-div>ul>li');
+    // li.remove(); // 所有<li>全被删除
+
+
+
+</script>
+
+</body>
+</html>

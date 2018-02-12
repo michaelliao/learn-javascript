@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- HTML结构 -->
+<form id="test-register" action="#" target="_blank" onsubmit="return checkRegisterForm()">
+    <p id="test-error" style="color:red"></p>
+    <p>
+        用户名: <input type="text" id="username" name="username">
+    </p>
+    <p>
+        口令: <input type="password" id="password" name="password">
+    </p>
+    <p>
+        重复口令: <input type="password" id="password-2">
+    </p>
+    <p>
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+    </p>
+</form>
+<script>
+    //用户名必须是3-10位英文字母或数字；
+    // 口令必须是6-20位；
+    // 两次输入口令必须一致。
+    'use strict';
+    var checkRegisterForm = function () {
+        var reg1 = /^[a-zA-Z0-9]{3,10}$/,
+            reg2 = /^.{6,20}$/,
+            username = document.getElementById('username').value,
+            password = document.getElementById('password').value,
+            password2 = document.getElementById('password-2').value;
+
+        if (!reg1.test(username)) {
+            alert('用户名必须是3-10位英文字母或数字');
+            return false;
+        }
+        if (!reg2.test(password)) {
+            alert('口令必须是6-20位');
+            return false;
+        }
+        if (password !== password2) {
+            alert('两次输入口令必须一致');
+            return false;
+        }
+        return true;
+
+    }
+
+
+// 测试:
+    ;(function () {
+        window.testFormHandler = checkRegisterForm;
+        var form = document.getElementById('test-register');
+        if (form.dispatchEvent) {
+            var event = new Event('submit', {
+                bubbles: true,
+                cancelable: true
+            });
+            form.dispatchEvent(event);
+        } else {
+            form.fireEvent('onsubmit');
+        }
+    })();
+
+
+</script>
+
+</body>
+</html>

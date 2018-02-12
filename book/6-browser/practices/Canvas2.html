@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="stock-canvas" width="200" heigth="100">
+    <p>你的浏览器不支持Canvas</p>
+</canvas>
+<!--<script>-->
+    <!--'use strict';-->
+    <!--window.loadStockData = function (r) {-->
+        <!--var-->
+            <!--NUMS = 30,-->
+            <!--data = r.data;-->
+        <!--if (data.length > NUMS) {-->
+            <!--data = data.slice(data.length - NUMS);-->
+        <!--}-->
+        <!--data = data.map(function (x) {-->
+            <!--return {-->
+                <!--date: x[0],-->
+                <!--open: x[1],-->
+                <!--close: x[2],-->
+                <!--high: x[3],-->
+                <!--low: x[4],-->
+                <!--vol: x[5],-->
+                <!--change: x[6]-->
+            <!--};-->
+        <!--});-->
+        <!--window.drawStock(data);-->
+    <!--}-->
+
+    <!--window.drawStock = function (data) {-->
+        <!--var-->
+            <!--canvas = document.getElementById('stock-canvas'),-->
+            <!--width = canvas.width,-->
+            <!--height = canvas.height,-->
+            <!--ctx = canvas.getContext('2d');-->
+        <!--console.log(JSON.stringify(data[0])); // {"date":"20150602","open":4844.7,"close":4910.53,"high":4911.57,"low":4797.55,"vol":62374809900,"change":1.69}-->
+        <!--ctx.clearRect(0, 0, width, height);-->
+        <!--ctx.fillText('Test Canvas', 10, 10);-->
+    <!--};-->
+
+    <!--// 加载最近30个交易日的K线图数据:-->
+    <!--var js = document.createElement('script');-->
+    <!--js.src = 'http://img1.money.126.net/data/hs/kline/day/history/2015/0000001.json?callback=loadStockData&t=' + Date.now();-->
+    <!--document.getElementsByTagName('head')[0].appendChild(js);-->
+
+    <!--//////////////////////-->
+<!--</script>-->
+<script>
+    var
+        canvas = document.getElementById('stock-canvas'),
+        width = canvas.width,
+        height = canvas.height,
+        ctx = canvas.getContext('2d');
+    console.log(data[0]); // {"date":"20150602","open":4844.7,"close":4910.53,"high":4911.57,"low":4797.55,"vol":62374809900,"change":1.69}
+    ctx.clearRect(0, 0, width, height);
+
+    ctx.fillStyle='#000000';
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle='#FFFFFF';
+    ctx.strokeStyle='#FFFFFF';
+    ctx.fillText('Test Canvas', 10, 10);
+    var line = new Path2D();
+    line.moveTo(10,10);
+    line.lineTo(10,canvas.height-10);
+    line.lineTo(canvas.width-10,canvas.height-10);
+    ctx.stroke(line);
+
+    var max = Math.floor(data.reduce(function(a,b) {
+        return a.high > b.high ? a:b;
+    }).high / 100 + 1) * 100;
+    var min = Math.floor(data.reduce(function(a,b) {
+        return a.low < b.low ? a:b;
+    }).low / 100 - 0) *100;
+
+    //3200 - 3800
+    console.log('max: ' + max + ' min: ' + min);
+
+    function vtoy(v) {
+        return canvas.height-10-(v-min)*(canvas.height-20)/(max-min);
+    }
+    function dtox(d) {
+        return 10 + (canvas.width - 20)*(d+2)/33;
+    }
+    ctx.fillText(max, 10, 20);
+    ctx.fillText(min, 10, canvas.height-10);
+
+    data.map(function(v,d) {
+        var top, bottom;
+        if (v.open > v.close) {
+            top = v.open;
+            bottom = v.close;
+            ctx.fillStyle = '#FF1111';
+            //ctx.strokeStyle = '#FF1111';
+        } else {
+            top = v.close;
+            bottom = v.open;
+            ctx.fillStyle = '#00FF11';
+            //ctx.strokeStyle = '#00FF11';
+        }
+        line.moveTo(dtox(d), vtoy(v.high));
+        line.lineTo(dtox(d), vtoy(v.low));
+        ctx.stroke(line);
+
+        ctx.fillRect(dtox(d)-3, vtoy(top), 7, vtoy(bottom)-vtoy(top));
+    });
+</script>
+</body>
+</html>

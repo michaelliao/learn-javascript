@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test-promise2-log" style="border: solid 1px #ccc; padding: 1em; margin: 15px 0;">
+    <p>Log:</p>
+</div>
+<script>
+
+    'use strict';
+
+    var logging = document.getElementById('test-promise2-log');
+    while (logging.children.length > 1) {
+        logging.removeChild(logging.children[logging.children.length - 1]);
+    }
+
+    function log(s) {
+        var p = document.createElement('p');
+        p.innerHTML = s;
+        logging.appendChild(p);
+    }
+
+    // 0.5秒后返回input*input的计算结果:
+    function multiply(input) {
+        return new Promise(function (resolve, reject) {
+            log('calculating ' + input + ' x ' + input + '...');
+            setTimeout(resolve, 500, input * input);
+        });
+    }
+
+    // 0.5秒后返回input+input的计算结果:
+    function add(input) {
+        return new Promise(function (resolve, reject) {
+            log('calculating ' + input + ' + ' + input + '...');
+            setTimeout(resolve, 500, input + input);
+        });
+    }
+
+    var p = new Promise(function (resolve, reject) {
+        log('start new Promise...');
+        resolve(123);
+    });
+
+    p.then(multiply)
+        .then(add)
+        .then(multiply)
+        .then(add)
+        .then(function (result) {
+            log('Got value: ' + result);
+        });
+
+</script>
+</body>
+</html>
