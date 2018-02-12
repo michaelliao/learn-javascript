@@ -6,6 +6,8 @@ const wss = new WebSocketServer({
     port: 3000
 });
 
+//server
+
 wss.on('connection', function (ws) {
     console.log(`[SERVER] connection()`);
     ws.on('message', function (message) {
@@ -22,6 +24,9 @@ wss.on('connection', function (ws) {
 
 console.log('ws server started at port 3000...');
 
+
+
+//client
 // client test:
 
 let count = 0;
