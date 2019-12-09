@@ -17,6 +17,6 @@
         "url": "https://github.com/michaelliao/learn-javascript.git"
     },
     "dependencies": {
-        "ws": "1.1.1"
+        "ws": "7.2.0"
     }
 }
